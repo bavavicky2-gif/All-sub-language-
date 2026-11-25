@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>All Sub Language - Demo & Download</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+  body {
+    min-height: 100vh;
+    color: #f8fafc;
+    background-color: #070c1f;
+    padding: 16px;
+  }
+  .app { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    background-color: #0e1736; border: 1px solid #1e2d5c;
+    border-radius: 16px; padding: 12px 14px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .logo-box {
+    width: 44px; height: 44px; border-radius: 12px;
+    background-color: #fbbf24; border: 2px solid #00e5ff;
+    display: grid; place-items: center; color: #070c1f; font-weight: 800; font-size: 15px;
+  }
+  .title { font-size: 16px; font-weight: 700; color: #fde68a; }
+  .sub { font-size: 11px; color: #67e8f9; }
+  .badge {
+    background-color: #172347; border: 1px solid #fbbf24;
+    color: #fde68a; padding: 5px 10px; border-radius: 999px; font-size: 12px; font-weight: 700;
+  }
+  .card {
+    background-color: #0e1736; border: 1px solid #1e2d5c;
+    border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .dl-box {
+    background-color: #091026; border: 1px solid #00e5ff;
+    border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .dl-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .dl-name { font-size: 14px; font-weight: 700; color: #fde68a; }
+  .dl-meta { font-size: 11px; color: #67e8f9; }
+  .hub-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .tab-btn {
+    padding: 10px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer;
+    background-color: #152147; color: #cbd5e1; border: 1px solid #26386e;
+  }
+  .tab-btn.active-yt { background-color: #dc2626; color: #ffffff; border-color: #f87171; }
+  .tab-btn.active-web { background-color: #0284c7; color: #ffffff; border-color: #38bdf8; }
+  .row { display: flex; gap: 8px; }
+  input, select {
+    width: 100%; padding: 10px 12px; border-radius: 12px;
+    border: 1px solid #2a3c75; background-color: #070c1f;
+    color: #f8fafc; font-size: 14px;
+  }
+  button {
+    border: none; border-radius: 12px; padding: 11px 14px; font-weight: 700;
+    cursor: pointer; font-size: 14px;
+  }
+  .btn-cyan { background-color: #00e5ff; color: #070c1f; }
+  .btn-gold { background-color: #fbbf24; color: #070c1f; }
+  .btn-red { background-color: #dc2626; color: #ffffff; }
+  .btn-blue { background-color: #0284c7; color: #ffffff; }
+  .btn-ghost { background-color: #172347; color: #e2e8f0; border: 1px solid #2a3c75; }
+  .site-box {
+    display: none; background-color: #091026; border: 1px solid #26386e;
+    border-radius: 14px; padding: 12px; flex-direction: column; gap: 8px;
+  }
+  .site-bar {
+    background-color: #121f45; border-radius: 10px; padding: 8px 10px;
+    font-size: 12px; color: #67e8f9; display: flex; justify-content: space-between; align-items: center; gap: 6px;
+  }
+  .video-item {
+    background-color: #142044; border: 1px solid #26386e; border-radius: 12px;
+    padding: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .video-item strong { font-size: 13px; color: #f8fafc; display: block; }
+  .video-item span { font-size: 11px; color: #cbd5e1; }
+  .player {
+    background-color: #060a19; border: 1px solid #1e2d5c;
+    border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .status-line { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+  .live-pill { color: #00e5ff; font-weight: 700; }
+  .dub-box {
+    background-color: #0d1633; border-left: 3px solid #00e5ff;
+    padding: 10px; border-radius: 10px; font-size: 13px; color: #e0f2fe; min-height: 46px;
+  }
+  .end-box {
+    display: none; background-color: #1a1829; border: 1px solid #fbbf24;
+    border-radius: 14px; padding: 12px; gap: 8px; flex-direction: column;
+  }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .plan {
+    background-color: #142044; border: 1px solid #26386e;
+    border-radius: 14px; padding: 10px; text-align: center; display: flex; flex-direction: column; gap: 6px;
+  }
+  .plan strong { color: #fde68a; font-size: 16px; }
+  .plan span { font-size: 11px; color: #cbd5e1; }
+  .ref-box {
+    background-color: #070c1f; border: 1px dashed #00e5ff;
+    border-radius: 12px; padding: 10px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .ref-code { color: #fde68a; font-weight: 800; letter-spacing: 1px; font-size: 14px; }
+  .small { font-size: 12px; color: #cbd5e1; line-height: 1.45; }
+  .msg { font-size: 12px; color: #67e8f9; min-height: 18px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <div class="brand">
+      <div class="logo-box">ASL</div>
+      <div>
+        <div class="title">All Sub Language</div>
+        <div class="sub">Live AI Dubbing • Mobile Download</div>
+      </div>
+    </div>
+    <div class="badge" id="timerBadge">Trial: 30s</div>
+  </div>
+
+  <div class="card">
+    <div class="dl-box">
+      <div class="dl-top">
+        <div>
+          <div class="dl-name">All Sub Language — Mobile App Package</div>
+          <div class="dl-meta">Version 1.0 • 30s Free Trial • Mobile Ready</div>
+        </div>
+        <button class="btn-gold" onclick="downloadAppPackage()">Download</button>
+      </div>
+      <div class="small" id="downloadGuide">
+        Download அழுத்தினால் போனில் கோப்பு சேமிக்கப்படும். Chrome மெனுவில் <b>"Add to Home screen"</b> கொடுத்து போன் திரையில் ஆப் போலவும் பயன்படுத்தலாம்.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="hub-tabs">
+      <button id="ytTab" class="tab-btn active-yt" onclick="switchHub('YouTube')">YouTube</button>
+      <button id="webTab" class="tab-btn" onclick="switchHub('Browser')">Browser / Chrome</button>
+    </div>
+
+    <div id="ytPanel" class="row">
+      <input id="ytInput" type="text" placeholder="YouTube-ல் Search செய்ய..." value="Madurai Heritage Travel" />
+      <button class="btn-cyan" onclick="searchAndRoute()">Search</button>
+    </div>
+
+    <div id="webPanel" class="row" style="display:none;">
+      <input id="webInput" type="text" placeholder="Browser-ல் Search அல்லது URL..." value="https://www.google.com/search?q=tamil+cinema+news" />
+      <button class="btn-cyan" onclick="searchAndRoute()">Search</button>
+    </div>
+
+    <div class="row">
+      <select id="langSelect">
+        <option value="Tamil">Dubbing: Tamil</option>
+        <option value="Hindi">Dubbing: Hindi</option>
+        <option value="English">Dubbing: English</option>
+      </select>
+      <button class="btn-ghost" onclick="stopTrial()">Stop</button>
+    </div>
+
+    <div class="site-box" id="siteInsideBox">
+      <div class="site-bar">
+        <span id="siteLabel">Website Opened</span>
+        <button id="externalLaunchBtn" class="btn-red" style="padding:6px 10px; font-size:11px;" onclick="openExternalTarget()">Open in YouTube</button>
+      </div>
+      <div class="small" id="routedUrlText"></div>
+      <div id="videoList"></div>
+    </div>
+  </div>
+
+  <div class="player">
+    <div class="status-line">
+      <span id="videoTitle">Search செய்து Website திறந்து வீடியோவை Choose செய்யவும்</span>
+      <span class="live-pill" id="playState">0s / 30s</span>
+    </div>
+    <div class="dub-box" id="dubText">வீடியோவை Choose செய்தவுடன் முதல் வினாடியிலிருந்தே (0s) Seconds ஓடத் தொடங்கும்.</div>
+    <div class="end-box" id="trialEndBox">
+      <div class="small" style="color:#fde68a; font-weight:700;">30 வினாடி Free Trial முடிந்தது!</div>
+      <div class="row">
+        <button class="btn-ghost" style="flex:1" onclick="startVideoRun(currentChosenVideo)">Try Again (0s)</button>
+        <button class="btn-gold" style="flex:1" onclick="focusPlans()">View Plans</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="small" style="color:#fde68a; font-weight:700;">Referral Program</div>
+    <div class="ref-box">
+      <div>
+        <div class="small">Your Referral Code</div>
+        <div class="ref-code" id="myRefCode">ASL-SUB30</div>
+      </div>
+      <button class="btn-ghost" onclick="copyRefCode()">Copy Code</button>
+    </div>
+    <div class="row">
+      <input id="friendRefInput" type="text" placeholder="நண்பரின் Referral Code..." />
+      <button class="btn-cyan" onclick="applyReferral()">Apply</button>
+    </div>
+  </div>
+
+  <div class="card" id="plansSection">
+    <div class="small" style="color:#fde68a; font-weight:700;">Subscription Plans</div>
+    <div class="plans">
+      <div class="plan">
+        <span>1 Month</span>
+        <strong>₹209</strong>
+        <button class="btn-gold" onclick="selectPlan('1 Month', 209)">Select</button>
+      </div>
+      <div class="plan">
+        <span>3 Months</span>
+        <strong>₹589</strong>
+        <button class="btn-gold" onclick="selectPlan('3 Months', 589)">Select</button>
+      </div>
+      <div class="plan">
+        <span>1 Year</span>
+        <strong>₹1,899</strong>
+        <button class="btn-gold" onclick="selectPlan('1 Year', 1899)">Select</button>
+      </div>
+    </div>
+    <label class="small" style="display:flex; align-items:center; gap:8px;">
+      <input id="autoPayCheck" type="checkbox" checked style="width:auto;" />
+      UPI AutoPay Enable
+    </label>
+    <button class="btn-ghost" onclick="showHelp()">Office Help</button>
+    <div class="msg" id="statusMsg"></div>
+  </div>
+</div>
+
+<script>
+  let currentHub = "YouTube";
+  let currentTargetUrl = "";
+  let currentChosenVideo = "";
+  let intervalId = null;
+  let elapsed = 0;
+  const maxSec = 30;
+
+  function downloadAppPackage() {
+    const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "All-Sub-Language-Mobile-App.html";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+    document.getElementById("downloadGuide").innerHTML =
+      "<b>All-Sub-Language-Mobile-App.html</b> உங்கள் போனின் <b>Downloads</b> போல்டரில் சேமிக்கப்பட்டது! Chrome மெனுவில் <b>Add to Home screen</b> கொடுத்து போன் திரையில் ஆப் போலவும் பயன்படுத்தலாம்.";
+    document.getElementById("statusMsg").textContent = "Mobile App Package டவுன்லோட் தொடங்கப்பட்டது.";
+  }
+
+  function switchHub(hub) {
+    currentHub = hub;
+    const ytTab = document.getElementById("ytTab");
+    const webTab = document.getElementById("webTab");
+    const ytPanel = document.getElementById("ytPanel");
+    const webPanel = document.getElementById("webPanel");
+    const extBtn = document.getElementById("externalLaunchBtn");
+
+    if (hub === "YouTube") {
+      ytTab.className = "tab-btn active-yt";
+      webTab.className = "tab-btn";
+      ytPanel.style.display = "flex";
+      webPanel.style.display = "none";
+      extBtn.className = "btn-red";
+      extBtn.textContent = "Open in YouTube";
+    } else {
+      webTab.className = "tab-btn active-web";
+      ytTab.className = "tab-btn";
+      webPanel.style.display = "flex";
+      ytPanel.style.display = "none";
+      extBtn.className = "btn-blue";
+      extBtn.textContent = "Open in Chrome";
+    }
+    document.getElementById("siteInsideBox").style.display = "none";
+    document.getElementById("statusMsg").textContent = hub + " தேர்ந்தெடுக்கப்பட்டது. Search செய்யவும்.";
+  }
+
+  function buildTargetUrl(queryText) {
+    const trimmed = queryText.trim();
+    if (currentHub === "YouTube") {
+      return "https://www.youtube.com/results?search_query=" + encodeURIComponent(trimmed || "trending");
+    }
+    if (/^https?:\/\//i.test(trimmed)) {
+      return trimmed;
+    }
+    return "https://www.google.com/search?q=" + encodeURIComponent(trimmed || "video");
+  }
+
+  function openExternalTarget() {
+    if (!currentTargetUrl) return;
+    window.open(currentTargetUrl, "_blank", "noopener,noreferrer");
+  }
+
+  function searchAndRoute() {
+    const raw = currentHub === "YouTube"
+      ? document.getElementById("ytInput").value
+      : document.getElementById("webInput").value;
+    const term = raw.trim() || (currentHub === "YouTube" ? "Trending Videos" : "Web Search");
+    currentTargetUrl = buildTargetUrl(term);
+
+    document.getElementById("siteLabel").textContent =
+      currentHub === "YouTube" ? "YouTube Website Opened" : "Chrome / Web Site Opened";
+    document.getElementById("routedUrlText").textContent = "Target: " + currentTargetUrl;
+
+    window.open(currentTargetUrl, "_blank", "noopener,noreferrer");
+
+    const videos = [
+      `${term} - Part 1`,
+      `${term} - Highlights`,
+      `${term} - Full Story`
+    ];
+
+    const listEl = document.getElementById("videoList");
+    listEl.innerHTML = "";
+    videos.forEach((v) => {
+      const item = document.createElement("div");
+      item.className = "video-item";
+      item.innerHTML = `
+        <div>
+          <strong>${v}</strong>
+          <span>${currentHub} • Choose செய்தால் 0s தொடங்கும்</span>
+        </div>
+        <button class="btn-gold" onclick="chooseVideo('${v.replace(/'/g, "\\'")}')">Choose</button>
+      `;
+      listEl.appendChild(item);
+    });
+
+    document.getElementById("siteInsideBox").style.display = "flex";
+    document.getElementById("statusMsg").textContent =
+      `"${term}" தேடப்பட்டது -> ${currentHub} திறக்கப்பட்டது. கீழே உள்ள வீடியோவை Choose செய்யவும்.`;
+  }
+
+  function chooseVideo(videoName) {
+    currentChosenVideo = videoName;
+    startVideoRun(videoName);
+  }
+
+  function updateUI() {
+    const left = Math.max(0, maxSec - elapsed);
+    document.getElementById("timerBadge").textContent = "Trial: " + left + "s";
+    document.getElementById("playState").textContent = elapsed + "s / 30s";
+  }
+
+  function startVideoRun(videoName) {
+    if (!videoName) return;
+    clearInterval(intervalId);
+    elapsed = 0;
+    const lang = document.getElementById("langSelect").value;
+
+    document.getElementById("videoTitle").textContent = `[${currentHub}] ${videoName}`;
+    document.getElementById("trialEndBox").style.display = "none";
+    document.getElementById("dubText").textContent = `[0s Run • ${lang} Dubbing] வீடியோ தேர்ந்தெடுக்கப்பட்டது — வினாடிகள் ஓடுகின்றன...`;
+    updateUI();
+
+    intervalId = setInterval(() => {
+      elapsed += 1;
+      updateUI();
+      if (elapsed > 0 && elapsed < maxSec) {
+        document.getElementById("dubText").textContent =
+          `[${elapsed}s • ${currentHub} • ${lang}] "${videoName}" — Dubbed Audio இயங்குகிறது.`;
+      }
+      if (elapsed >= maxSec) {
+        clearInterval(intervalId);
+        document.getElementById("dubText").textContent = "30 வினாடி Trial Preview முடிந்தது.";
+        document.getElementById("trialEndBox").style.display = "flex";
+      }
+    }, 1000);
+  }
+
+  function stopTrial() {
+    clearInterval(intervalId);
+    document.getElementById("playState").textContent = "Stopped (" + elapsed + "s / 30s)";
+  }
+
+  function focusPlans() {
+    document.getElementById("plansSection").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function copyRefCode() {
+    const code = document.getElementById("myRefCode").textContent;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(code).catch(() => {});
+    }
+    document.getElementById("statusMsg").textContent = "Referral Code காப்பி செய்யப்பட்டது: " + code;
+  }
+
+  function applyReferral() {
+    const entered = document.getElementById("friendRefInput").value.trim();
+    if (!entered) {
+      document.getElementById("statusMsg").textContent = "தயவுசெய்து ஒரு Referral Code உள்ளிடவும்.";
+      return;
+    }
+    document.getElementById("statusMsg").textContent = `Referral "${entered}" இணைக்கப்பட்டது!`;
+  }
+
+  function selectPlan(name, price) {
+    const ap = document.getElementById("autoPayCheck").checked ? "UPI AutoPay On" : "One-time";
+    document.getElementById("statusMsg").textContent = `${name} (₹${price.toLocaleString("en-IN")}) தேர்ந்தெடுக்கப்பட்டது • ${ap}`;
+  }
+
+  function showHelp() {
+    document.getElementById("statusMsg").textContent = "Office Help: support@allsublanguage.demo • 9 AM - 7 PM";
+  }
+</script>
+</body>
+</html>
